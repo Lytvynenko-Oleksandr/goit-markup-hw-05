@@ -69,6 +69,7 @@ h3 {
     display: flex;
 }
 
+
 .navigation-link {
     position: relative;
     color: var(--secondary-text-color);
@@ -76,8 +77,8 @@ h3 {
     font-size: 16px;
     line-height: 1.5;
     text-decoration: none;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 27px;
+    padding-bottom: 27px;
 
     transition-property: color;
     transition-duration: 250ms;
@@ -89,27 +90,19 @@ h3 {
     color: var(--change-color-link);
 }
 
-
-.navigation-link::after {
-    position: absolute;
-    left: 0px;
-    bottom: -13px;
+.navigation-link.active::after {
     content: '';
+    position: absolute;
+    bottom: 0px;
     display: block;
     width: 100%;
     height: 4px;
-    border-radius: 2px;
-    background-color: var(--change-color-button);
-    opacity: 0;
-
-    transition-property: opacity;
-    transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 4px;
+    background-color: var(--change-color-link);
 }
 
-.navigation-link:hover::after,
-.navigation-link:focus::after {
-    opacity: 1;
+.active {
+    color: var(--change-color-link);
 }
 
 .navigation-list {
@@ -501,30 +494,35 @@ h3 {
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
 }
 
-.examples-link:hover .examples-thumb::before,
-.examples-link:focus .examples-thumb::before {
-    opacity: 1;
-    transform: translateY(0);
-}
-
 .examples-thumb {
     position: relative;
     overflow: hidden;
 }
 
-.examples-thumb::before {
-    display: inline-block;
-    content: '';
+.overlay-thumb {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(77, 90, 229, 1);
-    opacity: 0;
-
-    transform: translateY(100%);
-    transition-property: opacity, transform;
+    background-color: rgba(77, 90, 229, 0.95);
+    color: #ffffff;
+    font-size: 16px;
+    letter-spacing: 1.5;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-top: 40px;
+    margin: 0;
+    overflow: auto;
+    transform: translate(0, 100%);
+    transition-property: transform;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.examples-link:hover .overlay-thumb,
+.examples-link:focus .overlay-thumb {
+    transform: translate(0,0);
 }
 
 .examples-title {
@@ -601,12 +599,12 @@ h3 {
 /* Модальное окно */
 .backdrop {
     position: fixed;
+    display: flex;
     top: 0px;
-    left: 0px;
+    right: 0px;
     width: 100%;
     height: 100%;
     background-color: rgba(46, 47, 66, 0.4);
-    opacity: 1;
 
     transition-property: opacity;
     transition-duration: 250ms;
@@ -636,6 +634,7 @@ h3 {
 }
 
 .btn {
+    display: flex;
     position: absolute;
     width: 24px;
     height: 24px;
@@ -645,4 +644,6 @@ h3 {
     background: #E7E9FC;
     border: 1px solid rgba(0, 0, 0, 0.1);
     cursor: pointer;
-}
+    justify-content: center;
+    align-items: center;
+ }
